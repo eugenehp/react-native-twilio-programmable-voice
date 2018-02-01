@@ -423,7 +423,8 @@ RCT_REMAP_METHOD(getActiveCall,
 - (void)provider:(CXProvider *)provider didDeactivateAudioSession:(AVAudioSession *)audioSession {
   NSLog(@"provider:didDeactivateAudioSession");
 
-  [[TwilioVoice sharedInstance] audioSessionDeactivated];
+// TODO: upgrade to TwilioVoice.framework 2.0.1
+//  [[TwilioVoice sharedInstance] audioSessionDeactivated];
 }
 
 - (void)provider:(CXProvider *)provider timedOutPerformingAction:(CXAction *)action {
