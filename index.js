@@ -19,6 +19,8 @@ const _eventHandlers = {
     connectionDidDisconnect: new Map(),
     //iOS specific
     callRejected: new Map(),
+    //new
+    answeredIncoming: new Map(),
 }
 
 const Twilio = {
