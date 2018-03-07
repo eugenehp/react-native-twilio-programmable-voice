@@ -43,7 +43,7 @@ RCT_EXPORT_MODULE()
 
 - (NSArray<NSString *> *)supportedEvents
 {
-  return @[@"deviceDidReceiveIncoming", @"connectionDidConnect", @"connectionDidDisconnect", @"callRejected", @"deviceReady", @"deviceNotReady"];
+  return @[@"deviceDidReceiveIncoming", @"answeredIncoming", @"connectionDidConnect", @"connectionDidDisconnect", @"callRejected", @"deviceReady", @"deviceNotReady"];
 }
 
 @synthesize bridge = _bridge;
@@ -591,6 +591,16 @@ RCT_REMAP_METHOD(getActiveCall,
     } else {
         self.call.uuid = uuid;
     }
+
+
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    if (self.callInvite.from){
+      [params setObject:self.callInvite.from forKey:@"from"];
+    }
+    if (self.callInvite.callSid){
+      [params setObject:self.callInvite.callSid forKey:@"callSid"];
+    }
+    [self sendEventWithName:@"answeredIncoming" body:params];
 
     self.callInvite = nil;
 
